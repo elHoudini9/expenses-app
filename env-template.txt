@@ -1,0 +1,5 @@
+DB_USER=pablito
+DB_HOST=localhost
+DB_NAME=expenses
+DB_PASSWORD=blah
+DB_PORT=5432

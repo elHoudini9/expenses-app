@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= `Jeff's Expense App - ${title}`
+    link(rel='stylesheet', href='/css/bootstrap.min.css', type="text/css")
+    link(rel='stylesheet', href='/css/styles.css', type="text/css")
+
+
+  body
+    nav.navbar.navbar-expand-lg.navbar-expand.navbar-light.bg-light
+      a.navbar-brand Jeff's App®
+      div
+        ul.navbar-nav
+          li.nav-item
+            a.nav-link(href="/form") Add
+          li.nav-item
+            a.nav-link(href="/list") List
+    br
+
+    div.container
+      block content

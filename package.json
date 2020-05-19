@@ -1,0 +1,23 @@
+{
+  "name": "expenses-api",
+  "version": "1.0.0",
+  "description": "HTTP API for expenses",
+  "main": "app.js",
+  "author": "Pablo Moran",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.5.0",
+    "pg": "^8.2.1",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon src/app.js"
+  }
+}

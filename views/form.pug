@@ -1,0 +1,64 @@
+extends layout
+block content
+  
+  div.row
+    div.col-xs-12.col-sm-8.col-md-8.col-lg-5
+      -data = data || {expenseDate: new Date().toISOString().substring(0, 10)}
+
+      if errors
+        for error in errors
+          div.alert.alert-warning= error.msg
+
+      form(action="/form" method="POST" class="form-registration")
+        label(for="expenseDate") Expense Date:
+        input(
+          type="date"
+          id="expenseDate"
+          name="expenseDate"
+          class="form-control"
+          value=data.expenseDate
+        )
+        br
+
+        label(for="description") Description:
+        textarea.form-control(
+          name="description"
+          rows="2"
+          placeholder="Cookies and Ice Cream..."
+          value=data.description
+        )
+        br
+
+        label(for="category") Category:
+        select.form-control(
+          name="category"
+          value=data.category
+        )
+          option(value="Groceries") Groceries
+          option(value="Other") Other
+        br
+
+        label(for="paymentType") Payment Type:
+        select.form-control(
+          name="paymentType"
+          value=data.paymentType
+        )
+          option(value="Visa") Visa
+          option(value="Cash") Cash
+        br
+
+        label(for="amount") Amount:
+        input(
+          type="text"
+          id="amount"
+          name="amount"
+          class="form-control"
+          value=data.amount
+        )
+        br
+
+        input.btn.btn-lg.btn-primary.btn-block(
+          type="submit"
+          value="Add Expense!"
+        )
+
