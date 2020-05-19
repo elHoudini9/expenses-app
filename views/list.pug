@@ -2,10 +2,10 @@ extends layout
 block content
   -search = search || ''
 
-    form.form-inline(action=`/list/${search}`, method="GET")
+    form.form-inline(action="/list", method="GET")
       div.form-group.mb-12
         label(for="search")
-        input.form-control.pm-pad(type="text", name="search", placeholder="Safeway...")
+        input.form-control.pm-pad(type="text", name="search", placeholder="Safeway...", value=search)
         input.btn.btn-primary(type="submit", value="Filter")
     br
 

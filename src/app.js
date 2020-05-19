@@ -22,8 +22,15 @@ app.get('/form', (req, res) => res.render('form', { title: 'Expense Form' }))
 
 app.get('/list', async (req, res) => {
   try {
-    const query = await db.query('select * from expenses')
-    res.render('list', { expenses: query.rows })
+    const query = await db.query(
+      `select * from expenses where description ilike $1`,
+      [`%${req.query.search}%`]
+    )
+    res.render('list', {
+      expenses: query.rows,
+      title: 'Expense List',
+      search: req.query.search
+    })
   } catch (err) {
     res.json(err)
     console.log(err)
@@ -33,10 +40,13 @@ app.get('/list', async (req, res) => {
 app.get('/list/:description', async (req, res) => {
   try {
     const query = await db.query(
-      "select * from expenses where description ilike '%$1%'",
-      [req.params.description]
+      `select * from expenses where description ilike '%${req.params.description}%'`
     )
-    res.render('list', { expenses: query.rows })
+    res.render('list', {
+      expenses: query.rows,
+      search: req.params.description,
+      title: 'Expense List'
+    })
   } catch (err) {
     res.json(err)
     console.log(err)
