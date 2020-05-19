@@ -22,9 +22,10 @@ app.get('/form', (req, res) => res.render('form', { title: 'Expense Form' }))
 
 app.get('/list', async (req, res) => {
   try {
+    const search = req.query.search || ''
     const query = await db.query(
       `select * from expenses where description ilike $1`,
-      [`%${req.query.search}%`]
+      [`%${search}%`]
     )
     res.render('list', {
       expenses: query.rows,
