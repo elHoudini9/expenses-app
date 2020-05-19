@@ -6,3 +6,8 @@
 .pm-pad {
   margin-right: 10px;
 }
+
+td.special {
+  white-space: nowrap;
+  overflow: scroll;
+}
