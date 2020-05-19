@@ -9,5 +9,5 @@
 
 td.special {
   white-space: nowrap;
-  overflow: scroll;
+  overflow: hidden;
 }
