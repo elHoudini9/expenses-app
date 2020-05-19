@@ -7,3 +7,5 @@ To get started, clone this repo.
 - run `npm i` on the root directory of the project
 - run `npm run start`
 - try it out
+
+The app is assuming that you have the database and expenses table created
