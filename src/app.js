@@ -88,10 +88,9 @@ app.post('/form', validationRules, async (req, res) => {
 
 // Update
 app.post('/update/:id', validationRules, async (req, res) => {
+  const errors = validationResult(req)
   const { id } = req.params
-
   const { expenseDate, description, category, paymentType, amount } = req.body
-
   const text = `
     update expenses set
       expense_date = $1,
@@ -104,10 +103,15 @@ app.post('/update/:id', validationRules, async (req, res) => {
   const values = [expenseDate, description, category, paymentType, amount, id]
 
   try {
-    const query = await db.query(text, values)
-    res.redirect('/list')
+    if (errors.isEmpty()) {
+      await db.query(text, values)
+      res.redirect('/list')
+    } else {
+      res.redirect(`/editor/${id}`)
+    }
   } catch (err) {
-    res.render('editor', { data: req.body })
+    console.log(err)
+    res.json(err)
   }
 })
 

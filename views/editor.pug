@@ -8,7 +8,7 @@ block content
       if errors
         for error in errors
           div.alert.alert-warning= error.msg
-
+          
       form(action=`/update/${data.expenseid}` method="POST" class="form-registration")
         label(for="expenseDate") Expense Date:
         input(
@@ -16,7 +16,7 @@ block content
           id="expenseDate"
           name="expenseDate"
           class="form-control"
-          value=data.expense_date.toISOString().substring(0, 10)
+          value=data.expense_date ? data.expense_date.toISOString().substring(0, 10) : data.expense_date
         )
         br
 
