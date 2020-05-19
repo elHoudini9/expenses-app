@@ -29,20 +29,21 @@ block content
         br
 
         label(for="category") Category:
-        select.form-control(
+        input.form-control(
+          type="text"
+          id="category"
           name="category"
           value=data.category
         )
-          option(value="Groceries", selected=(data.payment_type === 'Groceries')) Groceries
-          option(value="Other", selected=(data.payment_type === 'Other')) Other
         br
 
         label(for="paymentType") Payment Type:
-        select.form-control(
+        input.form-control(
+          type="text"
+          id="paymentType"
           name="paymentType"
+          value=data.payment_type
         )
-          option(value="Visa", selected=(data.payment_type === 'Visa')) Visa
-          option(value="Cash", selected=(data.payment_type === 'Cash')) Cash
         br
 
         label(for="amount") Amount:
