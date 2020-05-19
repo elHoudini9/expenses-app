@@ -30,6 +30,19 @@ app.get('/list', async (req, res) => {
   }
 })
 
+app.get('/list/:description', async (req, res) => {
+  try {
+    const query = await db.query(
+      "select * from expenses where description ilike '%$1%'",
+      [req.params.description]
+    )
+    res.render('list', { expenses: query.rows })
+  } catch (err) {
+    res.json(err)
+    console.log(err)
+  }
+})
+
 app.get('/editor/:id', async (req, res) => {
   const { id } = req.params
 

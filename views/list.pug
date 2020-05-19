@@ -1,29 +1,37 @@
 extends layout
 block content
-  
-  table.table.table-bordered
-    thead
-      tr
-        th #
-        th Expense Date
-        th Description
-        th Category
-        th Payment Type
-        th Amount
-        th
-        th
-    tbody
-      for exp in expenses
-        tr
-          td= exp.expenseid
-          td= exp.expense_date.toISOString().substring(0,10)
-          td= exp.description
-          td= exp.category
-          td= exp.payment_type
-          td= `$${exp.amount}`
-          td
-            a.btn.btn-info.btn-sm.btn-block(href=`/editor/${exp.expenseid}`) Edit
+  -search = search || ''
 
-          td
-            form(action=`/delete/${exp.expenseid}` method="POST")
-              input.btn.btn-danger.btn-sm.btn-block(type="submit", value="Delete")
+    form.form-inline(action=`/list/${search}`, method="GET")
+      div.form-group.mb-12
+        label(for="search")
+        input.form-control.pm-pad(type="text", name="search", placeholder="Safeway...")
+        input.btn.btn-primary(type="submit", value="Filter")
+    br
+
+    table.table.table-bordered
+      thead
+        tr
+          th #
+          th Expense Date
+          th Description
+          th Category
+          th Payment Type
+          th Amount
+          th
+          th
+      tbody
+        for exp in expenses
+          tr
+            td= exp.expenseid
+            td= exp.expense_date.toISOString().substring(0,10)
+            td= exp.description
+            td= exp.category
+            td= exp.payment_type
+            td= `$${exp.amount}`
+            td
+              a.btn.btn-info.btn-sm.btn-block(href=`/editor/${exp.expenseid}`) Edit
+
+            td
+              form(action=`/delete/${exp.expenseid}` method="POST")
+                input.btn.btn-danger.btn-sm.btn-block(type="submit", value="Delete")
