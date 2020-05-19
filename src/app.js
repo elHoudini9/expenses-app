@@ -24,29 +24,13 @@ app.get('/list', async (req, res) => {
   try {
     const search = req.query.search || ''
     const query = await db.query(
-      `select * from expenses where description ilike $1`,
+      `select * from expenses where description ilike $1 order by expense_date desc`,
       [`%${search}%`]
     )
     res.render('list', {
       expenses: query.rows,
       title: 'Expense List',
       search: req.query.search
-    })
-  } catch (err) {
-    res.json(err)
-    console.log(err)
-  }
-})
-
-app.get('/list/:description', async (req, res) => {
-  try {
-    const query = await db.query(
-      `select * from expenses where description ilike '%${req.params.description}%'`
-    )
-    res.render('list', {
-      expenses: query.rows,
-      search: req.params.description,
-      title: 'Expense List'
     })
   } catch (err) {
     res.json(err)
